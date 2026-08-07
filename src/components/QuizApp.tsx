@@ -199,7 +199,7 @@ function SetupPanel(p: any) {
           onChange={(e) => p.setSource(e.target.value)}
           placeholder="e.g. Paste a chapter, or type: 'The French Revolution causes and outcomes'" />
       </label>
-      <div className="grid gap-4 sm:grid-cols-3">
+      <div className="grid gap-4 sm:grid-cols-3 [&>label]:min-w-0">
         <label className="grid gap-1 text-sm">
           <span className="text-[var(--oz-muted)]">How many</span>
           <input type="number" min={3} max={30} value={p.count} className="field p-2"

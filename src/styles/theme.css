@@ -102,12 +102,16 @@ h1, h2, h3 { font-family: var(--oz-font-display); font-weight: 600; letter-spaci
 .confetti-canvas { position: fixed; inset: 0; pointer-events: none; z-index: 60; }
 
 .field {
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
   background: rgba(0,0,0,0.2);
   border: 2px solid var(--oz-border);
   border-radius: var(--oz-radius-m);
   color: var(--oz-fg);
   font-family: var(--oz-font-body);
 }
+select.field { text-overflow: ellipsis; }
 .field:focus-visible { outline: 3px solid var(--chalk-yellow); outline-offset: 2px; }
 
 
