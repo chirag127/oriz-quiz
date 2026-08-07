@@ -1,0 +1,113 @@
+@import 'tailwindcss';
+@import '@chirag127/oz-tokens-base/contract.css';
+@import '@chirag127/oz-tokens-base/base.css';
+@import '@chirag127/oz-chrome/styles.css';
+@import '@fontsource-variable/fraunces';
+@import '@fontsource/schoolbell';
+
+/* ===== oriz-quiz bespoke theme: schoolbook chalkboard + gameshow ===== */
+:root {
+  color-scheme: dark;
+
+  /* chalkboard green + chalk white + buzzer red */
+  --oz-bg: #1f3d34;            /* deep chalkboard green */
+  --oz-fg: #f4f1e8;            /* chalk white */
+  --oz-surface: #2a4a40;       /* raised slate panel */
+  --oz-muted: #a9c4b6;         /* faded chalk */
+  --oz-border: #3d6155;        /* chalk-tray line */
+  --oz-accent: #e23b3b;        /* buzzer red */
+  --oz-accent-fg: #fff8f0;
+
+  --chalk: #f4f1e8;
+  --chalk-yellow: #f2d35b;     /* gold star / streak */
+  --chalk-blue: #7fc4e8;
+  --chalk-pink: #f29fb8;
+  --board-frame: #6b4a2f;      /* wooden frame */
+
+  --oz-font-display: 'Fraunces Variable', 'Fraunces', Georgia, serif;
+  --oz-font-body: 'Fraunces Variable', Georgia, serif;
+  --oz-font-marker: 'Schoolbell Variable', 'Schoolbell', 'Comic Sans MS', cursive;
+}
+
+body {
+  background-color: var(--oz-bg);
+  background-image:
+    radial-gradient(ellipse at 20% 15%, rgba(255,255,255,0.05), transparent 45%),
+    radial-gradient(ellipse at 80% 85%, rgba(255,255,255,0.04), transparent 45%);
+  min-height: 100vh;
+}
+
+/* chalk-dust texture on headings */
+h1, h2, h3 { font-family: var(--oz-font-display); font-weight: 600; letter-spacing: -0.01em; }
+
+/* hand-drawn chalk underline */
+.chalk-underline {
+  position: relative;
+  display: inline-block;
+}
+.chalk-underline::after {
+  content: '';
+  position: absolute;
+  left: -2%;
+  right: -2%;
+  bottom: -0.15em;
+  height: 0.32em;
+  background: no-repeat center/100% 100%
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 12'%3E%3Cpath d='M2 7 C40 2 70 10 100 6 S160 2 198 6' stroke='%23f2d35b' stroke-width='4' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  opacity: 0.9;
+}
+
+.marker { font-family: var(--oz-font-marker); }
+
+/* buzzer button — gameshow */
+.buzzer {
+  font-family: var(--oz-font-marker);
+  background: radial-gradient(circle at 35% 30%, #ff6a6a, var(--oz-accent) 60%, #a91f1f);
+  color: var(--oz-accent-fg);
+  border: 3px solid #7a1414;
+  border-radius: var(--oz-radius-full);
+  box-shadow: 0 6px 0 #7a1414, 0 8px 14px rgba(0,0,0,0.35);
+  transition: transform var(--oz-dur-fast) var(--oz-ease-out), box-shadow var(--oz-dur-fast);
+}
+.buzzer:active { transform: translateY(5px); box-shadow: 0 1px 0 #7a1414, 0 2px 6px rgba(0,0,0,0.4); }
+
+/* slate card / option */
+.slate {
+  background: var(--oz-surface);
+  border: 2px solid var(--oz-border);
+  border-radius: var(--oz-radius-l);
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.03);
+}
+
+.option-btn {
+  font-family: var(--oz-font-body);
+  transition: transform var(--oz-dur-fast) var(--oz-ease-out), border-color var(--oz-dur-fast), background var(--oz-dur-fast);
+}
+.option-btn:hover:not(:disabled) { transform: translateX(4px); border-color: var(--chalk-yellow); }
+.option-correct { border-color: #4ade80 !important; background: rgba(74,222,128,0.15) !important; }
+.option-wrong { border-color: var(--oz-accent) !important; background: rgba(226,59,59,0.15) !important; }
+
+/* flip card */
+.flip { perspective: 1200px; }
+.flip-inner { transition: transform var(--oz-dur-slow) var(--oz-ease-in-out); transform-style: preserve-3d; position: relative; }
+.flip.is-flipped .flip-inner { transform: rotateY(180deg); }
+.flip-face { backface-visibility: hidden; position: absolute; inset: 0; display: grid; place-items: center; padding: var(--oz-space-6); }
+.flip-back { transform: rotateY(180deg); }
+
+@media (prefers-reduced-motion: reduce) {
+  .flip-inner, .buzzer, .option-btn { transition: none !important; }
+}
+
+/* confetti canvas overlay */
+.confetti-canvas { position: fixed; inset: 0; pointer-events: none; z-index: 60; }
+
+.field {
+  background: rgba(0,0,0,0.2);
+  border: 2px solid var(--oz-border);
+  border-radius: var(--oz-radius-m);
+  color: var(--oz-fg);
+  font-family: var(--oz-font-body);
+}
+.field:focus-visible { outline: 3px solid var(--chalk-yellow); outline-offset: 2px; }
+
+

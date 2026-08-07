@@ -1,0 +1,35 @@
+---
+import Base from '../layouts/Base.astro'
+import OzToolShell from '@chirag127/oz-chrome/components/OzToolShell.astro'
+import QuizApp from '../components/QuizApp.tsx'
+import '../styles/theme.css'
+
+const title = 'quiz.oriz.in — AI Quiz & Flashcard Maker'
+const desc = 'Paste notes or a topic — AI makes an MCQ quiz or spaced-repetition flashcards. Take the quiz, get scored, export. 100% in your browser.'
+---
+
+<Base title={title} description={desc}>
+  <OzToolShell site="quiz" title="Quiz Lab" themeColor="#e23b3b">
+    <section class="mx-auto w-full max-w-3xl px-4 pt-10 text-center md:pt-14">
+      <p class="marker text-lg text-[var(--chalk-blue)]">study smarter, not longer</p>
+      <h1 class="mt-2 text-4xl leading-tight md:text-6xl">
+        Turn any notes into a <span class="chalk-underline">quiz</span>
+      </h1>
+      <p class="mx-auto mt-4 max-w-xl text-[var(--oz-muted)]">{desc}</p>
+      <ul class="mx-auto mt-5 flex flex-wrap justify-center gap-2 text-sm">
+        <li class="slate px-3 py-1"><span class="marker text-[var(--chalk-yellow)]">MCQ quizzes</span></li>
+        <li class="slate px-3 py-1"><span class="marker text-[var(--chalk-yellow)]">SM-2 flashcards</span></li>
+        <li class="slate px-3 py-1"><span class="marker text-[var(--chalk-yellow)]">no signup</span></li>
+        <li class="slate px-3 py-1"><span class="marker text-[var(--chalk-yellow)]">nothing uploaded</span></li>
+      </ul>
+    </section>
+
+    <QuizApp client:load />
+
+    <Fragment slot="footer">
+      <a href="https://github.com/chirag127/oriz-quiz" rel="noopener">Source</a>
+      <span aria-hidden="true"> · </span>
+      <span>100% client-side · MIT</span>
+    </Fragment>
+  </OzToolShell>
+</Base>

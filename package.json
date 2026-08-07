@@ -1,0 +1,41 @@
+{
+  "name": "oriz-quiz",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "engines": { "node": ">=22.12.0" },
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "deploy": "astro build && wrangler pages deploy dist --project-name oriz-quiz --branch main --commit-dirty=true"
+  },
+  "dependencies": {
+    "@astrojs/react": "^5.0.5",
+    "@astrojs/sitemap": "^3.2.0",
+    "@chirag127/oz-ai": "file:../design-system/packages/oz-ai",
+    "@chirag127/oz-chrome": "file:../design-system/packages/oz-chrome",
+    "@chirag127/oz-file": "file:../design-system/packages/oz-file",
+    "@chirag127/oz-tokens-base": "file:../design-system/packages/oz-tokens-base",
+    "@fontsource-variable/fraunces": "^5.3.0",
+    "@fontsource/schoolbell": "^5.3.0",
+    "@gpt4free/g4f.dev": "^1.1.2",
+    "@tailwindcss/vite": "^4.3.1",
+    "astro": "^6.4.8",
+    "react": "^19.2.7",
+    "react-dom": "^19.2.7",
+    "tailwindcss": "^4.3.1"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "happy-dom": "^15.0.0",
+    "typescript": "^5.7.0",
+    "vitest": "^2.0.0",
+    "wrangler": "^4.102.0"
+  }
+}
+
