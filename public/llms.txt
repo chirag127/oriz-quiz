@@ -1,0 +1,26 @@
+# oriz Quiz
+
+> AI quiz and flashcard maker. Paste notes or a topic; AI writes a multiple-choice quiz or spaced-repetition flashcards. Take the quiz, get scored, review with SM-2, and export. 100% client-side — no upload, no signup, keyless AI via g4f.
+
+Live app: https://quiz.oriz.in
+Source: https://github.com/chirag127/oriz-quiz
+
+## Core features
+
+- [MCQ quiz](https://quiz.oriz.in): paste material, AI writes 3-30 questions with 4 options + one-line explanations; answer-lock reveals the correct answer and explains wrong picks.
+- [Flashcards](https://quiz.oriz.in): AI turns notes into front/back cards, reviewed with the SM-2 spaced-repetition algorithm (Again / Hard / Good / Easy).
+- [Saved decks](https://quiz.oriz.in): flashcard decks persist in IndexedDB; reopening surfaces only the cards that are due.
+- [Score + streak](https://quiz.oriz.in): running streak fires confetti at 3+ correct; a perfect quiz throws a big burst.
+- [Export](https://quiz.oriz.in): quiz to TXT / JSON, deck to CSV (Anki/Quizlet friendly).
+- [Model picker](https://quiz.oriz.in): auto-failover by default, or choose any g4f model.
+
+## About
+
+- [Info page](https://chirag127.github.io/oriz-quiz/): what oriz Quiz is, features, tech.
+- [Full text for LLMs](https://quiz.oriz.in/llms-full.txt): complete site content as markdown for AI ingestion.
+
+## Tech
+
+- Client-only Astro static site; React island for the app UI.
+- AI via @chirag127/oz-ai (g4f / gpt4free, multi-provider failover, keyless).
+- PWA-installable, offline-capable; all processing in-browser, nothing uploaded, no account.

@@ -1,0 +1,93 @@
+# oriz Quiz — AI Quiz & Flashcard Maker
+
+> Full site content as clean markdown for LLM / agent ingestion. Human site: https://quiz.oriz.in
+
+## Summary
+
+oriz Quiz turns any notes or topic into a multiple-choice quiz or a spaced-repetition flashcard deck. Paste a chapter, lecture notes, or just type a topic, and the AI writes questions or cards. Take the quiz, get scored with instant explanations, review flashcards with the SM-2 algorithm, and export everything. It runs 100% in your browser — no upload, no signup, no account. AI is keyless via g4f (gpt4free) with multi-provider failover.
+
+Live app: https://quiz.oriz.in
+Source repo: https://github.com/chirag127/oriz-quiz
+License: MIT
+
+## Hero
+
+study smarter, not longer.
+
+Turn any notes into a quiz.
+
+Paste notes or a topic — AI makes an MCQ quiz or spaced-repetition flashcards. Take the quiz, get scored, export. 100% in your browser.
+
+Tags: MCQ quizzes · SM-2 flashcards · no signup · nothing uploaded.
+
+## Two modes
+
+### MCQ Quiz
+
+Paste study material or type a topic. AI writes 3 to 30 multiple-choice questions, each with 4 options, one correct answer, and a one-line explanation. Options are shuffled. Answering locks the question and reveals the right answer; wrong answers are highlighted and the explanation appears. Pick a difficulty (easy / medium / hard) and how many questions.
+
+- Streak: consecutive correct answers build a streak. At 2+ a streak counter shows; at 3+ confetti fires.
+- Result screen: shows your percent score and correct/total, plus a grade line ("Top of the class!" at 90%+, "Solid work." at 70%+, "Keep studying." at 50%+, "Back to the board." below). A perfect 100% throws a big confetti burst.
+- Review missed: expand to see every question you got wrong, the correct option, and its explanation.
+- Retry the same quiz, or start a new one.
+
+### Flashcards
+
+AI turns your notes into front/back flashcards. Cards are stored locally in a named deck and reviewed with the SM-2 spaced-repetition algorithm. Flip a card to see the answer, then grade your recall: Again, Hard, Good, or Easy. SM-2 schedules the next review interval per card based on the grade. When you reopen a deck, only the cards that are due surface. When all due cards are reviewed, the deck shows "Deck done!" and schedules the rest for later.
+
+## Saved decks
+
+Flashcard decks persist in the browser's IndexedDB. The setup screen lists every saved deck with its card count and how many are due. Open a deck to review its due cards; delete a deck you no longer need. Nothing is stored on a server.
+
+## Export
+
+- Quiz to TXT (plain text) or JSON.
+- Deck to CSV — Anki / Quizlet friendly for import into other tools.
+
+## Model picker
+
+By default AI uses auto-failover: it tries providers in order until one responds. You can also pick any specific g4f model from the dropdown. Models are discovered at runtime via @chirag127/oz-ai.
+
+## Sample fallback
+
+Leave the input empty and it uses a built-in sample topic (the water cycle) so you can try the whole flow in one click.
+
+## AI is optional polish
+
+Generation needs AI, but the rest works without it. If every provider is down, generation shows a clear error ("AI could not generate right now — all providers busy. Try again, pick another model, or use the sample."), and taking a saved quiz, reviewing saved decks, and exporting still work offline.
+
+## How it works
+
+1. You paste notes or a topic (or leave it empty for the sample).
+2. oz-ai (g4f) generates quiz questions or flashcards in JSON mode.
+3. The app parses and validates the JSON.
+4. Quiz path: take the quiz, score it, confetti on streaks, export TXT/JSON.
+5. Flashcard path: cards saved to IndexedDB, reviewed with SM-2, export CSV.
+
+## FAQ
+
+- Do I need an account? No. No signup, no login, no account of any kind.
+- Is my data uploaded? No. Everything runs in your browser; notes never leave the device. Decks live in local IndexedDB.
+- Does it cost anything? No. It is free and the AI is keyless via g4f.
+- What if the AI fails? You get a clear error; retry, switch model, or use the sample. Saved quizzes, decks, and export still work.
+- Can I use it offline? Yes — it is an installable PWA. AI generation needs a connection, but reviewing saved decks and exporting work offline.
+- What spaced-repetition algorithm is used? SM-2, the classic SuperMemo-2 scheduler, with Again / Hard / Good / Easy grades.
+- Can I import into Anki or Quizlet? Export a deck to CSV and import it there.
+
+## Tech
+
+- Client-only Astro static site (output: static). React island for the interactive app.
+- AI: @chirag127/oz-ai — g4f / gpt4free with multi-provider failover, keyless (no API key).
+- Storage: IndexedDB for decks; no server, no database.
+- Spaced repetition: SM-2 algorithm.
+- Shared fleet packages: @chirag127/oz-ai (AI), @chirag127/oz-file (downloads), @chirag127/oz-tokens-base (design token contract), @chirag127/oz-chrome (header/footer/tool-shell + oriz.in wordmark).
+- PWA: @vite-pwa/astro, installable, offline-capable, autoUpdate service worker.
+- Hosting: Cloudflare Pages at https://quiz.oriz.in.
+- License: MIT © 2026 Chirag Singhal.
+
+## Links
+
+- Live app: https://quiz.oriz.in
+- About / info page: https://chirag127.github.io/oriz-quiz/
+- Source: https://github.com/chirag127/oriz-quiz
+- LLM index: https://quiz.oriz.in/llms.txt
