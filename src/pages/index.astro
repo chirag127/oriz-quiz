@@ -4,27 +4,55 @@ import OzToolShell from '@chirag127/oz-chrome/components/OzToolShell.astro'
 import QuizApp from '../components/QuizApp.tsx'
 import '../styles/theme.css'
 
-const title = 'quiz.oriz.in — AI Quiz & Flashcard Maker'
-const desc = 'Paste notes or a topic — AI makes an MCQ quiz or spaced-repetition flashcards. Take the quiz, get scored, export. 100% in your browser.'
+const SITE = 'https://quiz.oriz.in'
+const title = 'AI Quiz & Flashcard Maker — free, no signup | quiz.oriz.in'
+const desc =
+  'Free AI quiz maker: paste notes or a topic for instant MCQ quizzes or spaced-repetition flashcards. Scored, exportable, 100% in-browser — no upload, no signup.'
+const ogImage = `${SITE}/screenshots/desktop.png`
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareApplication',
+  name: 'oriz Quiz — AI Quiz & Flashcard Maker',
+  applicationCategory: 'EducationalApplication',
+  operatingSystem: 'Web',
+  url: SITE,
+  description: desc,
+  offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+}
 ---
 
 <Base title={title} description={desc}>
+  <link slot="head" rel="canonical" href={SITE} />
+  <meta slot="head" property="og:url" content={SITE} />
+  <meta slot="head" property="og:image" content={ogImage} />
+  <meta slot="head" property="og:site_name" content="quiz.oriz.in" />
+  <meta slot="head" name="twitter:card" content="summary_large_image" />
+  <meta slot="head" name="twitter:title" content={title} />
+  <meta slot="head" name="twitter:description" content={desc} />
+  <meta slot="head" name="twitter:image" content={ogImage} />
+  <script
+    slot="head"
+    type="application/ld+json"
+    set:html={JSON.stringify(jsonLd)}
+  />
+
   <OzToolShell site="quiz" title="Quiz Lab" themeColor="#e23b3b">
-    <section class="mx-auto w-full max-w-3xl px-4 pt-10 text-center md:pt-14">
+    <section class="mx-auto w-full max-w-2xl px-4 pt-12 text-center md:pt-16">
       <p class="marker text-lg text-[var(--chalk-blue)]">study smarter, not longer</p>
       <h1 class="mt-2 text-4xl leading-tight md:text-6xl">
-        Turn any notes into a <span class="chalk-underline">quiz</span>
+        AI quiz &amp; flashcard maker from your <span class="chalk-underline">notes</span>
       </h1>
-      <p class="mx-auto mt-4 max-w-xl text-[var(--oz-muted)]">{desc}</p>
-      <ul class="mx-auto mt-5 flex flex-wrap justify-center gap-2 text-sm">
-        <li class="slate px-3 py-1"><span class="marker text-[var(--chalk-yellow)]">MCQ quizzes</span></li>
-        <li class="slate px-3 py-1"><span class="marker text-[var(--chalk-yellow)]">SM-2 flashcards</span></li>
-        <li class="slate px-3 py-1"><span class="marker text-[var(--chalk-yellow)]">no signup</span></li>
-        <li class="slate px-3 py-1"><span class="marker text-[var(--chalk-yellow)]">nothing uploaded</span></li>
-      </ul>
+      <p class="mx-auto mt-4 max-w-xl text-[var(--oz-muted)]">
+        Paste a topic or your notes. AI writes a scored MCQ quiz or spaced-repetition
+        flashcards in seconds. Free, no signup, nothing leaves your browser.
+      </p>
+      <a href="#tool" class="buzzer mt-6 inline-block px-8 py-3 text-lg">Make my quiz</a>
     </section>
 
-    <QuizApp client:load />
+    <div id="tool">
+      <QuizApp client:load />
+    </div>
 
     <Fragment slot="footer">
       <a href="https://github.com/chirag127/oriz-quiz" rel="noopener">Source</a>
