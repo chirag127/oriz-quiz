@@ -1,17 +1,23 @@
 # oriz-quiz
 
-- **Live app:** https://quiz.oriz.in
-- **About / info:** https://chirag127.github.io/oriz-quiz/
+> AI quiz + flashcard maker — paste notes or a topic, get an MCQ quiz or SM-2 flashcards. 100% client-side.
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-e23b3b.svg)](./LICENSE)
+[![GitHub stars](https://img.shields.io/github/stars/chirag127/oriz-quiz?style=social)](https://github.com/chirag127/oriz-quiz/stargazers)
+[![last commit](https://img.shields.io/github/last-commit/chirag127/oriz-quiz)](https://github.com/chirag127/oriz-quiz/commits/main)
+![Astro](https://img.shields.io/badge/built%20with-Astro-ff5d01?logo=astro&logoColor=white)
+![PWA](https://img.shields.io/badge/PWA-installable-5a0fc8)
+
+- **Live app:** https://quiz.oriz.in _(canonical — Cloudflare Pages)_
+- **About / info:** https://chirag127.github.io/oriz-quiz/ _(GitHub Pages landing)_
+- **Repo:** https://github.com/chirag127/oriz-quiz
 - **For LLMs:** https://quiz.oriz.in/llms.txt · https://quiz.oriz.in/llms-full.txt
 
 AI quiz + flashcard maker. Paste notes or a topic, get a multiple-choice quiz or spaced-repetition flashcards, take the quiz, score, and export.
 
 > **100% client-side. No upload, no signup, free.** Your notes never leave the browser. AI runs keyless via g4f with multi-provider failover.
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-e23b3b.svg)](./LICENSE)
-![Client-side](https://img.shields.io/badge/runtime-100%25%20client--side-1f3d34)
-![Astro](https://img.shields.io/badge/built%20with-Astro-ff5d01)
-![PWA](https://img.shields.io/badge/PWA-installable-5a0fc8)
+**⭐ If this is useful, please [star the repo](https://github.com/chirag127/oriz-quiz/stargazers) — it helps others find it.**
 
 ## What it does
 
@@ -66,6 +72,24 @@ npm run deploy     # build + wrangler pages deploy
 ```
 
 Windows note: use **npm**, not pnpm (pnpm skips `@esbuild/win32-x64` and the Astro build crashes).
+
+## Part of the oriz family
+
+One of ~80 small, fast, single-purpose tools and sites in the **oriz** fleet — see [blog.oriz.in](https://blog.oriz.in) for how it's built and run solo. Sibling tools: [muse.oriz.in](https://muse.oriz.in) · [persona.oriz.in](https://persona.oriz.in) · [json.oriz.in](https://json.oriz.in) · [diagram.oriz.in](https://diagram.oriz.in).
+
+**Cost:** $0 — static build hosted free on Cloudflare Pages; AI is keyless (g4f) and client-side.
+
+## Contributing
+
+Issues and PRs welcome. Conventional commits are the changelog.
+
+## Author
+
+Chirag Singhal · chirag@oriz.in
+
+## Status
+
+Stable.
 
 ## License
 
