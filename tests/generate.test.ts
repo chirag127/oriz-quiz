@@ -58,3 +58,35 @@ describe('prompts', () => {
     expect(cardPrompt('WATER', 7)).toContain('7')
   })
 })
+
+describe('malformed AI records', () => {
+  it('skips null, primitive and array quiz entries without losing valid questions', () => {
+    const valid = { q: 'good', options: ['a', 'b'], answer: 1 }
+    expect(parseQuiz({ questions: [null, undefined, 3, 'bad', [], valid] }))
+      .toEqual([{ ...valid, explanation: undefined }])
+  })
+
+  it('rejects fractional, non-finite and out-of-range answer indices', () => {
+    for (const answer of [0.5, NaN, Infinity, -1, 2]) {
+      expect(() => parseQuiz({ questions: [{ q: 'bad', options: ['a', 'b'], answer }] }))
+        .toThrow('no valid questions parsed')
+    }
+  })
+
+  it('accepts both integer answer boundaries', () => {
+    for (const answer of [0, 1]) {
+      expect(parseQuiz({ questions: [{ q: 'valid', options: ['a', 'b'], answer }] })[0].answer)
+        .toBe(answer)
+    }
+  })
+
+  it('skips null, primitive and array flashcard entries', () => {
+    expect(parseCards({ cards: [null, undefined, 3, 'bad', [], { front: 'f', back: 'b' }] }))
+      .toEqual([{ front: 'f', back: 'b' }])
+  })
+
+  it('reports validation errors when only malformed entries remain', () => {
+    expect(() => parseQuiz({ questions: [null] })).toThrow('no valid questions parsed')
+    expect(() => parseCards({ cards: [null] })).toThrow('no valid cards parsed')
+  })
+})

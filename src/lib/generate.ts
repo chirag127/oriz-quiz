@@ -42,6 +42,7 @@ export function parseQuiz(data: unknown): Question[] {
   if (!Array.isArray(arr)) throw new Error('missing questions[]')
   const out: Question[] = []
   for (const it of arr) {
+    if (typeof it !== 'object' || it === null || Array.isArray(it)) continue
     const q = it as Partial<Question>
     if (
       typeof q.q === 'string' &&
@@ -49,6 +50,7 @@ export function parseQuiz(data: unknown): Question[] {
       q.options.length >= 2 &&
       q.options.every((o) => typeof o === 'string') &&
       typeof q.answer === 'number' &&
+      Number.isInteger(q.answer) &&
       q.answer >= 0 &&
       q.answer < q.options.length
     ) {
@@ -69,6 +71,7 @@ export function parseCards(data: unknown): FlashPair[] {
   if (!Array.isArray(arr)) throw new Error('missing cards[]')
   const out: FlashPair[] = []
   for (const it of arr) {
+    if (typeof it !== 'object' || it === null || Array.isArray(it)) continue
     const c = it as Partial<FlashPair>
     if (typeof c.front === 'string' && typeof c.back === 'string' && c.front && c.back)
       out.push({ front: c.front, back: c.back })
